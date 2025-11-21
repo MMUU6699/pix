@@ -21,7 +21,16 @@ import 'state/themeState.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  
+  // Initialize Firebase with error handling
+  try {
+    await Firebase.initializeApp();
+    print('✅ Firebase initialized successfully');
+  } catch (e) {
+    print('⚠️ Firebase initialization failed: $e');
+    print('📱 App will continue without Firebase features');
+  }
+  
   setupDependencies();
   runApp(const MyApp());
 }

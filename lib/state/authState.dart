@@ -225,14 +225,24 @@ class AuthState extends AppState {
     try {
       isBusy = true;
       Utility.logEvent('get_currentUSer', parameter: {});
-      user = _firebaseAuth.currentUser;
-      if (user != null) {
-        await getProfileUser();
-        authStatus = AuthStatus.LOGGED_IN;
-        userId = user!.uid;
-      } else {
+      
+      // Try to get current user, but handle Firebase errors gracefully
+      try {
+        user = _firebaseAuth.currentUser;
+        if (user != null) {
+          await getProfileUser();
+          authStatus = AuthStatus.LOGGED_IN;
+          userId = user!.uid;
+        } else {
+          authStatus = AuthStatus.NOT_LOGGED_IN;
+        }
+      } catch (firebaseError) {
+        cprint('Firebase Auth not available: $firebaseError', errorIn: 'getCurrentUser');
+        // If Firebase is not available, set user as not logged in
         authStatus = AuthStatus.NOT_LOGGED_IN;
+        user = null;
       }
+      
       isBusy = false;
       return user;
     } catch (error) {
