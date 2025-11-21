@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/helper/enum.dart';
-import 'package:flutter_twitter_clone/helper/utility.dart';
-import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/ui/page/Auth/selectAuthMethod.dart';
-import 'package:flutter_twitter_clone/ui/page/homePage.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
+import 'package:pix/helper/enum.dart';
+import 'package:pix/helper/utility.dart';
+import 'package:pix/state/authState.dart';
+import 'package:pix/ui/page/Auth/selectAuthMethod.dart';
+import 'package:pix/ui/page/homePage.dart';
+import 'package:pix/ui/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/model/user.dart';
-import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/ui/page/settings/widgets/headerWidget.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/customAppBar.dart';
-import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
+import 'package:pix/model/user.dart';
+import 'package:pix/state/authState.dart';
+import 'package:pix/ui/page/settings/widgets/headerWidget.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/customAppBar.dart';
+import 'package:pix/widgets/customWidgets.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/settingsRowWidget.dart';

@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/state/suggestionUserState.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:pix/state/suggestionUserState.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_twitter_clone/state/searchState.dart';
-import 'package:flutter_twitter_clone/ui/page/common/locator.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
+import 'package:pix/state/searchState.dart';
+import 'package:pix/ui/page/common/locator.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/l10n/app_localizations.dart';
 
 import 'helper/routes.dart';
 import 'state/appState.dart';
@@ -14,6 +16,8 @@ import 'state/authState.dart';
 import 'state/chats/chatState.dart';
 import 'state/feedState.dart';
 import 'state/notificationState.dart';
+import 'state/languageState.dart';
+import 'state/themeState.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,19 +42,41 @@ class MyApp extends StatelessWidget {
             create: (_) => NotificationState()),
         ChangeNotifierProvider<SuggestionsState>(
             create: (_) => SuggestionsState()),
+        ChangeNotifierProvider<LanguageState>(
+            create: (_) => LanguageState()),
+        ChangeNotifierProvider<ThemeState>(
+            create: (_) => ThemeState()),
       ],
-      child: MaterialApp(
-        title: 'Fwitter',
-        theme: AppTheme.appTheme.copyWith(
-          textTheme: GoogleFonts.mulishTextTheme(
-            Theme.of(context).textTheme,
-          ),
-        ),
-        debugShowCheckedModeBanner: false,
-        routes: Routes.route(),
-        onGenerateRoute: (settings) => Routes.onGenerateRoute(settings),
-        onUnknownRoute: (settings) => Routes.onUnknownRoute(settings),
-        initialRoute: "SplashPage",
+      child: Consumer2<LanguageState, ThemeState>(
+        builder: (context, languageState, themeState, child) {
+          return MaterialApp(
+            title: 'Pix',
+            theme: AppTheme.lightTheme.copyWith(
+              textTheme: GoogleFonts.mulishTextTheme(
+                AppTheme.lightTheme.textTheme,
+              ),
+            ),
+            darkTheme: AppTheme.darkTheme.copyWith(
+              textTheme: GoogleFonts.mulishTextTheme(
+                AppTheme.darkTheme.textTheme,
+              ),
+            ),
+            themeMode: themeState.themeMode,
+            debugShowCheckedModeBanner: false,
+            locale: languageState.locale,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            routes: Routes.route(),
+            onGenerateRoute: (settings) => Routes.onGenerateRoute(settings),
+            onUnknownRoute: (settings) => Routes.onUnknownRoute(settings),
+            initialRoute: "SplashPage",
+          );
+        },
       ),
     );
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/helper/utility.dart';
-import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/ui/page/Auth/widget/googleLoginButton.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/customFlatButton.dart';
-import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
-import 'package:flutter_twitter_clone/widgets/newWidget/customLoader.dart';
+import 'package:pix/helper/utility.dart';
+import 'package:pix/state/authState.dart';
+import 'package:pix/ui/page/Auth/widget/googleLoginButton.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/customFlatButton.dart';
+import 'package:pix/widgets/customWidgets.dart';
+import 'package:pix/widgets/newWidget/customLoader.dart';
 import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
@@ -127,7 +127,7 @@ class _SignInState extends State<SignIn> {
 
   void _emailLogin() {
     var state = Provider.of<AuthState>(context, listen: false);
-    if (state.isbusy) {
+    if (state.isBusy) {
       return;
     }
     loader.showLoader(context);

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/helper/enum.dart';
-import 'package:flutter_twitter_clone/model/feedModel.dart';
-import 'package:flutter_twitter_clone/state/bookmarkState.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/customAppBar.dart';
-import 'package:flutter_twitter_clone/widgets/newWidget/emptyList.dart';
-import 'package:flutter_twitter_clone/widgets/tweet/tweet.dart';
+import 'package:pix/helper/enum.dart';
+import 'package:pix/model/feedModel.dart';
+import 'package:pix/state/bookmarkState.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/customAppBar.dart';
+import 'package:pix/widgets/newWidget/emptyList.dart';
+import 'package:pix/widgets/tweet/tweet.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkPage extends StatelessWidget {
@@ -56,7 +56,7 @@ class BookmarkPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = Provider.of<BookmarkState>(context);
     var list = state.tweetList;
-    if (state.isbusy) {
+    if (state.isBusy) {
       return const SizedBox(
         height: 3,
         child: LinearProgressIndicator(),

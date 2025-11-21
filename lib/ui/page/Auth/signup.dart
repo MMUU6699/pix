@@ -1,16 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/helper/constant.dart';
-import 'package:flutter_twitter_clone/helper/enum.dart';
-import 'package:flutter_twitter_clone/helper/utility.dart';
-import 'package:flutter_twitter_clone/model/user.dart';
-import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/ui/page/Auth/widget/googleLoginButton.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/customFlatButton.dart';
-import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
-import 'package:flutter_twitter_clone/widgets/newWidget/customLoader.dart';
+import 'package:pix/helper/constant.dart';
+import 'package:pix/helper/enum.dart';
+import 'package:pix/helper/utility.dart';
+import 'package:pix/model/user.dart';
+import 'package:pix/state/authState.dart';
+import 'package:pix/ui/page/Auth/widget/googleLoginButton.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/customFlatButton.dart';
+import 'package:pix/widgets/customWidgets.dart';
+import 'package:pix/widgets/newWidget/customLoader.dart';
 import 'package:provider/provider.dart';
 
 class Signup extends StatefulWidget {

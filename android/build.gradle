@@ -33,7 +33,7 @@ subprojects {
             }
             if (currentNamespace == null || currentNamespace.toString().trim() == '') {
                 def safeName = name.replaceAll('[^A-Za-z0-9_]','_')
-                androidExt.namespace = "com.thealphamerc.${safeName}"
+                androidExt.namespace = "com.voxin.${safeName}"
             }
         }
         // Immediately strip deprecated 'package' attribute from source manifests during configuration

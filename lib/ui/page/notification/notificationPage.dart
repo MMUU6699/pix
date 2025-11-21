@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/helper/enum.dart';
-import 'package:flutter_twitter_clone/model/feedModel.dart';
-import 'package:flutter_twitter_clone/model/notificationModel.dart';
-import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/state/notificationState.dart';
-import 'package:flutter_twitter_clone/ui/page/notification/widget/follow_notification_tile.dart';
-import 'package:flutter_twitter_clone/ui/page/notification/widget/post_like_tile.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/customAppBar.dart';
-import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
-import 'package:flutter_twitter_clone/widgets/newWidget/emptyList.dart';
+import 'package:pix/helper/enum.dart';
+import 'package:pix/model/feedModel.dart';
+import 'package:pix/model/notificationModel.dart';
+import 'package:pix/state/authState.dart';
+import 'package:pix/state/notificationState.dart';
+import 'package:pix/ui/page/notification/widget/follow_notification_tile.dart';
+import 'package:pix/ui/page/notification/widget/post_like_tile.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/customAppBar.dart';
+import 'package:pix/widgets/customWidgets.dart';
+import 'package:pix/widgets/newWidget/emptyList.dart';
 import 'package:provider/provider.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -90,7 +90,7 @@ class NotificationPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = Provider.of<NotificationState>(context);
     var list = state.notificationList;
-    if (state.isbusy) {
+    if (state.isBusy) {
       return const SizedBox(
         height: 3,
         child: LinearProgressIndicator(),

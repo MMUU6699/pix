@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/helper/utility.dart';
-import 'package:flutter_twitter_clone/ui/page/settings/widgets/headerWidget.dart';
-import 'package:flutter_twitter_clone/ui/page/settings/widgets/settingsRowWidget.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/customAppBar.dart';
-import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
+import 'package:pix/helper/utility.dart';
+import 'package:pix/ui/page/settings/widgets/headerWidget.dart';
+import 'package:pix/ui/page/settings/widgets/settingsRowWidget.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/customAppBar.dart';
+import 'package:pix/widgets/customWidgets.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class AboutPage extends StatelessWidget {
             showDivider: false,
             onPressed: () {
               Utility.launchURL(
-                  "https://github.com/TheAlphamerc/flutter_twitter_clone/issues");
+                  "https://github.com/TheAlphamerc/pix/issues");
             },
           ),
           const HeaderWidget('Legal'),

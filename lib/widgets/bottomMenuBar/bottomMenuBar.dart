@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/state/appState.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/bottomMenuBar/tabItem.dart';
+import 'package:pix/state/appState.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/bottomMenuBar/tabItem.dart';
 import 'package:provider/provider.dart';
 
 import '../customWidgets.dart';

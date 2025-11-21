@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/helper/customRoute.dart';
-import 'package:flutter_twitter_clone/helper/utility.dart';
-import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/ui/page/profile/widgets/circular_image.dart';
-import 'package:flutter_twitter_clone/widgets/cache_image.dart';
-import 'package:flutter_twitter_clone/widgets/customFlatButton.dart';
-import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
+import 'package:pix/helper/customRoute.dart';
+import 'package:pix/helper/utility.dart';
+import 'package:pix/state/authState.dart';
+import 'package:pix/ui/page/profile/widgets/circular_image.dart';
+import 'package:pix/widgets/cache_image.dart';
+import 'package:pix/widgets/customFlatButton.dart';
+import 'package:pix/widgets/customWidgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 

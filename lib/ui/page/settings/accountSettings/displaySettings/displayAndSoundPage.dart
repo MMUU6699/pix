@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/ui/page/settings/widgets/headerWidget.dart';
-import 'package:flutter_twitter_clone/ui/page/settings/widgets/settingsRowWidget.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/customAppBar.dart';
-import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
-import 'package:flutter_twitter_clone/widgets/newWidget/title_text.dart';
+import 'package:pix/ui/page/settings/widgets/headerWidget.dart';
+import 'package:pix/ui/page/settings/widgets/settingsRowWidget.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/customAppBar.dart';
+import 'package:pix/widgets/customWidgets.dart';
+import 'package:pix/widgets/newWidget/title_text.dart';
 
 class DisplayAndSoundPage extends StatelessWidget {
   const DisplayAndSoundPage({Key? key}) : super(key: key);

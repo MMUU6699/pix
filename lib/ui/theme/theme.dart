@@ -5,7 +5,7 @@ part 'text_styles.dart';
 part 'extention.dart';
 
 class AppTheme {
-  static final ThemeData appTheme = ThemeData.light().copyWith(
+  static final ThemeData lightTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: TwitterColor.white,
     brightness: Brightness.light,
     primaryColor: AppColor.primary,
@@ -26,11 +26,10 @@ class AppTheme {
           color: Colors.white,
           elevation: 0,
         ),
-    tabBarTheme: TabBarThemeData(
-      labelStyle: TextStyles.titleStyle.copyWith(color: TwitterColor.dodgeBlue),
+    tabBarTheme: TabBarTheme(
+      labelStyle: TextStyle(color: TwitterColor.dodgeBlue),
       unselectedLabelColor: AppColor.darkGrey,
-      unselectedLabelStyle:
-          TextStyles.titleStyle.copyWith(color: AppColor.darkGrey),
+      unselectedLabelStyle: const TextStyle(color: AppColor.darkGrey),
       labelColor: TwitterColor.dodgeBlue,
       labelPadding: const EdgeInsets.symmetric(vertical: 12),
     ),
@@ -53,6 +52,56 @@ class AppTheme {
       brightness: Brightness.light,
     ),
   );
+
+  static final ThemeData darkTheme = ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: const Color(0xFF15202B),
+    brightness: Brightness.dark,
+    primaryColor: TwitterColor.dodgeBlue,
+    cardColor: const Color(0xFF1E2732),
+    unselectedWidgetColor: Colors.grey,
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: Color(0xFF1E2732),
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF15202B),
+      iconTheme: IconThemeData(
+        color: Colors.white,
+      ),
+      elevation: 0,
+    ),
+    bottomAppBarTheme: ThemeData.dark().bottomAppBarTheme.copyWith(
+          color: const Color(0xFF1E2732),
+          elevation: 0,
+        ),
+    tabBarTheme: TabBarTheme(
+      labelStyle: TextStyle(color: TwitterColor.dodgeBlue),
+      unselectedLabelColor: Colors.grey,
+      unselectedLabelStyle: const TextStyle(color: Colors.grey),
+      labelColor: TwitterColor.dodgeBlue,
+      labelPadding: const EdgeInsets.symmetric(vertical: 12),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: TwitterColor.dodgeBlue,
+    ),
+    colorScheme: const ColorScheme(
+      background: Color(0xFF15202B),
+      onPrimary: Colors.white,
+      onBackground: Colors.white,
+      onError: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: Colors.white,
+      error: Colors.red,
+      primary: Colors.blue,
+      primaryContainer: Colors.blue,
+      secondary: Color(0xFF8899A6),
+      secondaryContainer: Color(0xFF8899A6),
+      surface: Color(0xFF1E2732),
+      brightness: Brightness.dark,
+    ),
+  );
+
+  // Backward compatibility
+  static ThemeData get appTheme => lightTheme;
 
   static List<BoxShadow> shadow = <BoxShadow>[
     BoxShadow(

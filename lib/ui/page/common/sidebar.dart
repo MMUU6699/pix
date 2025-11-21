@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/helper/constant.dart';
-import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/ui/page/bookmark/bookmarkPage.dart';
-import 'package:flutter_twitter_clone/ui/page/profile/follow/followerListPage.dart';
-import 'package:flutter_twitter_clone/ui/page/profile/follow/followingListPage.dart';
-import 'package:flutter_twitter_clone/ui/page/profile/profilePage.dart';
-import 'package:flutter_twitter_clone/ui/page/profile/qrCode/scanner.dart';
-import 'package:flutter_twitter_clone/ui/page/profile/widgets/circular_image.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
-import 'package:flutter_twitter_clone/widgets/url_text/customUrlText.dart';
+import 'package:pix/helper/constant.dart';
+import 'package:pix/state/authState.dart';
+import 'package:pix/ui/page/bookmark/bookmarkPage.dart';
+import 'package:pix/ui/page/profile/follow/followerListPage.dart';
+import 'package:pix/ui/page/profile/follow/followingListPage.dart';
+import 'package:pix/ui/page/profile/profilePage.dart';
+import 'package:pix/ui/page/profile/qrCode/scanner.dart';
+import 'package:pix/ui/page/profile/widgets/circular_image.dart';
+import 'package:pix/ui/theme/theme.dart';
+import 'package:pix/widgets/customWidgets.dart';
+import 'package:pix/widgets/url_text/customUrlText.dart';
 import 'package:provider/provider.dart';
 
 class SidebarMenu extends StatefulWidget {

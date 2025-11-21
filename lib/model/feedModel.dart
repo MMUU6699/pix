@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter_twitter_clone/model/user.dart';
+import 'package:pix/model/user.dart';
+import 'package:pix/model/videoModel.dart';
 
 class FeedModel {
   String? key;
@@ -14,6 +15,7 @@ class FeedModel {
   int? retweetCount;
   late String createdAt;
   String? imagePath;
+  VideoModel? video;
   List<String>? tags;
   List<String?>? replyTweetKeyList;
   String?
@@ -28,6 +30,7 @@ class FeedModel {
       this.retweetCount,
       required this.createdAt,
       this.imagePath,
+      this.video,
       this.likeList,
       this.tags,
       this.user,
@@ -44,6 +47,7 @@ class FeedModel {
       "retweetCount": retweetCount ?? 0,
       "createdAt": createdAt,
       "imagePath": imagePath,
+      "video": video?.toJson(),
       "likeList": likeList,
       "tags": tags,
       "replyTweetKeyList": replyTweetKeyList,
@@ -64,6 +68,9 @@ class FeedModel {
     imagePath = map['imagePath'];
     createdAt = map['createdAt'];
     imagePath = map['imagePath'];
+    if (map['video'] != null) {
+      video = VideoModel.fromJson(map['video']);
+    }
     lanCode = map['lanCode'];
     user = UserModel.fromJson(map['user']);
     parentkey = map['parentkey'];

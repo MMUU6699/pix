@@ -1,9 +1,9 @@
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
+import 'package:pix/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/model/user.dart';
-import 'package:flutter_twitter_clone/ui/page/common/usersListPage.dart';
-import 'package:flutter_twitter_clone/ui/page/profile/follow/followListState.dart';
-import 'package:flutter_twitter_clone/widgets/newWidget/customLoader.dart';
+import 'package:pix/model/user.dart';
+import 'package:pix/ui/page/common/usersListPage.dart';
+import 'package:pix/ui/page/profile/follow/followListState.dart';
+import 'package:pix/widgets/newWidget/customLoader.dart';
 import 'package:provider/provider.dart';
 
 class FollowerListPage extends StatelessWidget {
@@ -26,7 +26,7 @@ class FollowerListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (context.watch<FollowListState>().isbusy) {
+    if (context.watch<FollowListState>().isBusy) {
       return SizedBox(
         height: context.height,
         child: const CustomScreenLoader(
