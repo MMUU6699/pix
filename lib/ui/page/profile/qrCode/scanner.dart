@@ -10,7 +10,7 @@ import 'package:flutter_twitter_clone/model/user.dart';
 import 'package:flutter_twitter_clone/ui/page/profile/profilePage.dart';
 import 'package:flutter_twitter_clone/ui/page/profile/widgets/circular_image.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'dot_indicator.dart';
@@ -32,24 +32,23 @@ class _ScanState extends State<ScanScreen> with SingleTickerProviderStateMixin {
   final GlobalKey qrKey = GlobalKey();
   late PageController pageController;
   double pageIndex = 0;
-  late Barcode result;
+  String? result;
   bool isFound = false;
-  late QRViewController controller;
+  late MobileScannerController controller;
   GlobalKey globalKey = GlobalKey();
   @override
   void initState() {
     super.initState();
     pageController = PageController()..addListener(pageListener);
+    controller = MobileScannerController();
   }
 
   @override
   void reassemble() {
     super.reassemble();
-    if (Platform.isAndroid) {
-      controller.pauseCamera();
-    } else if (Platform.isIOS) {
-      controller.resumeCamera();
-    }
+    // Ensure camera is running after hot reload
+    controller.stop();
+    controller.start();
   }
 
   void pageListener() {
@@ -97,14 +96,26 @@ class _ScanState extends State<ScanScreen> with SingleTickerProviderStateMixin {
               itemCount: 2,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
-                  return QRView(
-                    key: qrKey,
-                    onQRViewCreated: _onQRViewCreated,
-                    overlay: QrScannerOverlayShape(
-                        borderRadius: 40,
-                        borderColor: Theme.of(context).colorScheme.onPrimary,
-                        borderWidth: 10,
-                        borderLength: MediaQuery.of(context).size.width * .2),
+                  return MobileScanner(
+                    controller: controller,
+                    onDetect: (capture) {
+                      for (final b in capture.barcodes) {
+                        final raw = b.rawValue;
+                        if (raw == null) continue;
+                        if (isFound) return;
+                        setState(() {
+                          result = raw;
+                        });
+                        if (result!.contains("fwitter/profile/")) {
+                          isFound = true;
+                          Navigator.pop(context);
+                          var userId = result!.split("/")[2];
+                          Navigator.push(
+                              context, ProfilePage.getRoute(profileId: userId));
+                          return;
+                        }
+                      }
+                    },
                   );
                 } else {
                   return QrCode(user: widget.user, globalKey: globalKey);
@@ -164,23 +175,7 @@ class _ScanState extends State<ScanScreen> with SingleTickerProviderStateMixin {
     );
   }
 
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      if (isFound) {
-        return;
-      }
-      setState(() {
-        result = scanData;
-      });
-      if (result.code!.contains("fwitter/profile/")) {
-        isFound = true;
-        Navigator.pop(context);
-        var userId = result.code!.split("/")[2];
-        Navigator.push(context, ProfilePage.getRoute(profileId: userId));
-      }
-    });
-  }
+  // MobileScanner uses the onDetect callback in the widget itself.
 
   @override
   void dispose() {

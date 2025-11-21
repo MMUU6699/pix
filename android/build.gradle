@@ -7,10 +7,48 @@ allprojects {
 
 rootProject.buildDir = '../build'
 subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    // Only redirect buildDir for projects that are inside this repository
+    try {
+        def rootPath = rootProject.projectDir.absolutePath
+        def projPath = project.projectDir.absolutePath
+        if (projPath.startsWith(rootPath)) {
+            project.buildDir = "${rootProject.buildDir}/${project.name}"
+        }
+    } catch (ignored) {
+    }
 }
 subprojects {
     project.evaluationDependsOn(':app')
+}
+
+// Ensure library modules (including plugins) have a namespace set for newer AGP
+subprojects {
+    plugins.withId('com.android.library') {
+        def androidExt = extensions.findByName('android')
+        if (androidExt != null) {
+            def currentNamespace = null
+            try {
+                currentNamespace = androidExt.namespace
+            } catch (ignored) {
+            }
+            if (currentNamespace == null || currentNamespace.toString().trim() == '') {
+                def safeName = name.replaceAll('[^A-Za-z0-9_]','_')
+                androidExt.namespace = "com.thealphamerc.${safeName}"
+            }
+        }
+        // Immediately strip deprecated 'package' attribute from source manifests during configuration
+        try {
+            def manifestFile = file('src/main/AndroidManifest.xml')
+            if (manifestFile.exists()) {
+                def text = manifestFile.getText('UTF-8')
+                if (text.contains('package="')) {
+                    def newText = text.replaceAll(/package="[^\"]*"/, '')
+                    manifestFile.write(newText, 'UTF-8')
+                }
+            }
+        } catch (ignored) {
+        }
+    }
 }
 
 tasks.register("clean", Delete) {

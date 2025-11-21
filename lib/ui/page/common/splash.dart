@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +7,8 @@ import 'package:flutter_twitter_clone/helper/enum.dart';
 import 'package:flutter_twitter_clone/helper/utility.dart';
 import 'package:flutter_twitter_clone/state/authState.dart';
 import 'package:flutter_twitter_clone/ui/page/Auth/selectAuthMethod.dart';
-import 'package:flutter_twitter_clone/ui/page/common/updateApp.dart';
 import 'package:flutter_twitter_clone/ui/page/homePage.dart';
 import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {
@@ -51,27 +47,9 @@ class _SplashPageState extends State<SplashPage> {
   /// User will redirected to update app screen.
   /// Once user update app with latest version and back to app then user automatically redirected to welcome / Home page
   Future<bool> _checkAppVersion() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    final currentAppVersion = packageInfo.version;
-    final buildNo = packageInfo.buildNumber;
-    final config = await _getAppVersionFromFirebaseConfig();
-
-    if (config != null &&
-        config['name'] == currentAppVersion &&
-        config['versions'].contains(int.tryParse(buildNo))) {
-      return true;
-    } else {
-      if (kDebugMode) {
-        cprint("Latest version of app is not installed on your system");
-        cprint(
-            "This is for testing purpose only. In debug mode update screen will not be open up");
-        cprint(
-            "If you are planning to publish app on store then please update app version in firebase config");
-        return true;
-      }
-      Navigator.pushReplacement(context, UpdateApp.getRoute());
-      return false;
-    }
+    // تجاوز التحقق من التحديث دائماً وتوجيه المستخدم للشاشة الرئيسية
+    cprint("تخطي التحقق من التحديث: سيتم توجيه المستخدم مباشرة إلى الشاشة الرئيسية");
+    return true;
   }
 
   /// Returns app version from firebase config
@@ -91,20 +69,6 @@ class _SplashPageState extends State<SplashPage> {
   ///  } ```
   /// After adding app version key click on Publish Change button
   /// For package detail check:-  https://pub.dev/packages/firebase_remote_config#-readme-tab-
-  Future<Map?> _getAppVersionFromFirebaseConfig() async {
-    final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
-    await remoteConfig.fetchAndActivate();
-    // await remoteConfig.activateFetched();
-    var data = remoteConfig.getString('supportedBuild');
-    if (data.isNotEmpty) {
-      return jsonDecode(data) as Map;
-    } else {
-      cprint(
-          "Please add your app's current version into Remote config in firebase",
-          errorIn: "_getAppVersionFromFirebaseConfig");
-      return null;
-    }
-  }
 
   Widget _body() {
     var height = 150.0;

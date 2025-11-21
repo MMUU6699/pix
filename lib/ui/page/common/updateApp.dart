@@ -68,7 +68,7 @@ class _UpdateAppState extends State<UpdateApp> with WidgetsBindingObserver {
               child: CustomFlatButton(
                 label: "Update now",
                 onPressed: () => Utility.launchURL(
-                    "https://play.google.com/store/apps/details?id=com.thealphamerc.flutter_twitter_clone"),
+                  "https://play.google.com/store/apps/details?id=com.voxin.pix"),
                 borderRadius: 30,
               ),
             )
